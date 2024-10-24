@@ -10,101 +10,68 @@ from typing import Callable, Iterable
 # Implementation of a prelude of elementary functions.
 
 
-def mul(x: float, y: float) -> float:
-    "$f(x, y) = x * y$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def is_close(num1: float, num2: float) -> bool:
+    return abs(num1 - num2) < 1e-2 
 
 
-def id(x: float) -> float:
-    "$f(x) = x$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def mul(num1: float, num2: float) -> float:
+    return num1 * num2
 
 
-def add(x: float, y: float) -> float:
-    "$f(x, y) = x + y$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def max(num1: float, num2: float) -> float:
+    return num1 if num1 > num2 else num2
 
 
-def neg(x: float) -> float:
-    "$f(x) = -x$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def add(num1: float, num2: float) -> float:
+    return num1 + num2
 
 
-def lt(x: float, y: float) -> float:
-    "$f(x) =$ 1.0 if x is less than y else 0.0"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def neg(num1: float) -> float:
+    return - num1
 
 
-def eq(x: float, y: float) -> float:
-    "$f(x) =$ 1.0 if x is equal to y else 0.0"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def id(num: float) -> float:
+    return num
 
 
-def max(x: float, y: float) -> float:
-    "$f(x) =$ x if x is greater than y else y"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def inv(num: float) -> float:
+    return 1.0 / num
 
 
-def is_close(x: float, y: float) -> float:
-    "$f(x) = |x - y| < 1e-2$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def relu(num: float) -> float:
+    return num if num > 0 else 0.0
 
 
-def sigmoid(x: float) -> float:
-    r"""
-    $f(x) =  \frac{1.0}{(1.0 + e^{-x})}$
-
-    (See https://en.wikipedia.org/wiki/Sigmoid_function )
-
-    Calculate as
-
-    $f(x) =  \frac{1.0}{(1.0 + e^{-x})}$ if x >=0 else $\frac{e^x}{(1.0 + e^{x})}$
-
-    for stability.
-    """
-    raise NotImplementedError("Need to include this file from past assignment.")
+def relu_back(num1: float, num2: float) -> float:
+    return num2 if num1 > 0 else 0.0
 
 
-def relu(x: float) -> float:
-    """
-    $f(x) =$ x if x is greater than 0, else 0
-
-    (See https://en.wikipedia.org/wiki/Rectifier_(neural_networks) .)
-    """
-    raise NotImplementedError("Need to include this file from past assignment.")
+def lt(num1: float, num2: float) -> float:
+    return float(num1 < num2)
 
 
-EPS = 1e-6
+def eq(num1: float, num2: float) -> float:
+    return float(num1 == num2)
 
 
-def log(x: float) -> float:
-    "$f(x) = log(x)$"
-    return math.log(x + EPS)
+def sigmoid(num: float) -> float:
+    return 1.0/(1.0 + math.exp(-num)) if num >=0 else math.exp(num)/(1.0 + math.exp(num))
 
 
-def exp(x: float) -> float:
-    "$f(x) = e^{x}$"
-    return math.exp(x)
+def log(num: float) -> float:
+    return math.log(num + 1e-6)
 
 
-def log_back(x: float, d: float) -> float:
-    r"If $f = log$ as above, compute $d \times f'(x)$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def exp(num: float) -> float:
+    return math.exp(num)
 
 
-def inv(x: float) -> float:
-    "$f(x) = 1/x$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def log_back(num: float) -> float:
+    return 1.0 / num
 
 
-def inv_back(x: float, d: float) -> float:
-    r"If $f(x) = 1/x$ compute $d \times f'(x)$"
-    raise NotImplementedError("Need to include this file from past assignment.")
-
-
-def relu_back(x: float, d: float) -> float:
-    r"If $f = relu$ compute $d \times f'(x)$"
-    raise NotImplementedError("Need to include this file from past assignment.")
+def inv_back(num: float) -> float:
+    return - 1.0 / (num ** 2)
 
 
 # ## Task 0.3
